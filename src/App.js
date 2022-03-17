@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './components/headerComponent/index'
+import Homepage from './components/homePageComponent';
+import Productdetails from './components/productdetailscomponent';
+import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
+import {useState} from 'react';
+
 
 function App() {
+  const [products, setProducts] = useState('')
+  console.log(products, 'parentProduct')
+  const parentList = (data) => {
+    setProducts(data)
+  }
+  const Editproduct = (product) => {
+    console.log(product)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Header />
+
+      <Routes>
+        <Route exact path='/' element={<Homepage parentList={parentList}  products={products} Editproduct={Editproduct} />} />
+        <Route exact path='/ProductDetails' element={<Productdetails />} /> 
+      </Routes>
+    </Router>
   );
 }
 
