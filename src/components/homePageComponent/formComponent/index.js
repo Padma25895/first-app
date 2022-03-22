@@ -6,27 +6,36 @@ function FormSection(props) {
   const [productDescription, setProductDescription] = useState("")
   const [productImage, setProductImage] = useState("")
   const [productList, setProductList] = useState([])
-
-
+  console.log(productList)
   const handleSubmit = () => {
-    console.log(productList, 'test')
-    const product = {
+    const product =
+     {
       name : productName,
+      id:Math.random(),
       price : productPrice,
       description : productDescription,
       image : productImage
     }
-
+    console.log(product)
     productList.push(product)
+    
+    let updateData = productList.find((ele) => ele.id === product.id);
+     updateData=product;
+     console.log(updateData);
+
+
     props.parentList(productList)
     setProductName("")
     setProductPrice("")
     setProductDescription("")
     setProductImage("")
   }
-  useEffect((product) => {
-    props.Editproduct(console.log(product));
-  })
+  useEffect( () => {
+    setProductName(props.productEdit.name)
+    setProductPrice(props.productEdit.price)
+    setProductDescription(props.productEdit.description)
+    setProductImage(props.productEdit.image)
+  },[props.productEdit])
   
   return (
     <div>
