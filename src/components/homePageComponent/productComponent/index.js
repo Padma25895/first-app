@@ -3,7 +3,6 @@ import Card from '../../uiComponent/cardComponent'
 import products from '../../../jsonData/product.json'
 
 function Productsection(props) {
-    console.log(props.products)
 
   return (
       <>
